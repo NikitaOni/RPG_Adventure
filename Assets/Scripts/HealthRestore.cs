@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthRestore : MonoBehaviour
 {
     CharacterStats myStats;
     int amountRestore = 25;
+
+    [SerializeField]private Image cooldownImage;
+    float cooldown = 5f;
+
+    // for first five second use heal pot 
+    float ColldownCurrent = -5; 
+
+
 
     void Start()
     {
@@ -20,7 +29,16 @@ public class HealthRestore : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            UsePotionOfHealth(myStats, amountRestore);
+            if (Time.time - ColldownCurrent > cooldown)
+            {
+                UsePotionOfHealth(myStats, amountRestore);
+                ColldownCurrent = Time.time;
+            }
         }
+        float cooldownPercent = (Time.time - ColldownCurrent) / cooldown;
+        
+        //reverse value 
+        cooldownImage.fillAmount = 1 - cooldownPercent;
+
     }
 }
