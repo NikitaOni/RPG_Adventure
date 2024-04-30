@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c60e318968a542b41996fc3c12831d4f, type: 3}
+  m_Name: Sword of Fire
+  m_EditorClassIdentifier: 
+  name: Sword of Fire
+  icon: {fileID: 21300000, guid: c5bbe65fe6cf7d14d88285e9c2cde222, type: 3}
+  isDefaultItem: 0
+  model: {fileID: 0}
+  equipSlot: 3
+  mesh: {fileID: 2386212, guid: 13af847dfa6dbe844ba4b7c902f98f67, type: 3}
+  armorModifier: 0
+  damageModifier: 5
