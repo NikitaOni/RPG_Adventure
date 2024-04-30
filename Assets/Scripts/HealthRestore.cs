@@ -36,9 +36,7 @@ public class HealthRestore : MonoBehaviour
             }
         }
         float cooldownPercent = (Time.time - ColldownCurrent) / cooldown;
-        
         //reverse value 
         cooldownImage.fillAmount = 1 - cooldownPercent;
-
     }
 }
