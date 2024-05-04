@@ -31,15 +31,15 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Gothic9
-    second: {fileID: 2100000, guid: 12c6686faba30324585fbd49fa9792bc, type: 2}
+    second: {fileID: 2100000, guid: ea0850cd45628224eb56ca9fab8e50d1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: pasted__Gothic1
-    second: {fileID: 2100000, guid: 7ead4eaad71010a42b9f8063002b1fcd, type: 2}
+    second: {fileID: 2100000, guid: 12c6686faba30324585fbd49fa9792bc, type: 2}
   materials:
     materialImportMode: 1
-    materialName: 1
+    materialName: 0
     materialSearch: 1
     materialLocation: 1
   animations:
