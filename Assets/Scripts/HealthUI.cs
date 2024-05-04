@@ -23,7 +23,7 @@ public class HealthUI : MonoBehaviour
         cam = Camera.main.transform;
         foreach(Canvas c in FindObjectsOfType<Canvas>())
         {
-            if(c.renderMode == RenderMode.WorldSpace)
+            if (c.renderMode == RenderMode.WorldSpace && c.CompareTag("HealthBar"))
             {
                 ui = Instantiate(uiPrefab, c.transform).transform;
                 healthSlider = ui.GetChild(0).GetComponent<Image>();

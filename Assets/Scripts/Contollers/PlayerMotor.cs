@@ -9,6 +9,9 @@ public class PlayerMotor : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
 
+    public float rotateSpeedMovement = 0.05f;
+    private float rotateVelocity;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -26,6 +29,11 @@ public class PlayerMotor : MonoBehaviour
     public void MoveToPoint(Vector3 point)
     {
         agent.SetDestination(point);
+
+        Quaternion rotationToLookAt = Quaternion.LookRotation(point - transform.position);
+        float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLookAt.eulerAngles.y, ref rotateVelocity, rotateSpeedMovement * (Time.deltaTime * 5));
+
+        transform.eulerAngles = new Vector3(0, rotationY, 0);
     }
 
     public void FollowTarget(Interactable newTarget)
