@@ -11,10 +11,12 @@ public class PlayerMotor : MonoBehaviour
 
     public float rotateSpeedMovement = 0.05f;
     private float rotateVelocity;
+    private HighLightManager highLightManager;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        highLightManager = GetComponent<HighLightManager>();
     }
 
     private void Update()
@@ -30,6 +32,8 @@ public class PlayerMotor : MonoBehaviour
     {
         agent.SetDestination(point);
 
+        highLightManager.DeselectHighlight();
+
         Quaternion rotationToLookAt = Quaternion.LookRotation(point - transform.position);
         float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLookAt.eulerAngles.y, ref rotateVelocity, rotateSpeedMovement * (Time.deltaTime * 5));
 
@@ -42,6 +46,7 @@ public class PlayerMotor : MonoBehaviour
         agent.updateRotation = false;
 
         target = newTarget.interactionTransform;
+        highLightManager.SelectedHighlight();
     }
 
     public void StopFollowingTarget()
