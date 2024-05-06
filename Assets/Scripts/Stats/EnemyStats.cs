@@ -8,6 +8,7 @@ public class EnemyStats : CharacterStats
     {
         base.Die();
 
-        Destroy(gameObject);
+        EnemyController controller = GetComponent<EnemyController>();
+        controller.IsAlive = false;
     }
 }

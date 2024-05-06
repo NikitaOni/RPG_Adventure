@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
 
 public class EnemyController : MonoBehaviour
 {
@@ -10,7 +9,13 @@ public class EnemyController : MonoBehaviour
 
     Transform target; 
     NavMeshAgent agent;
-    CharacterCombat combat; 
+    CharacterCombat combat;
+    public bool IsAlive = true;
+    new CapsuleCollider collider;
+    Outline outline;
+    Animator animator;
+    SpawnLoot loot;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,27 +23,38 @@ public class EnemyController : MonoBehaviour
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         combat = GetComponent<CharacterCombat>();
+        collider = GetComponent<CapsuleCollider>();
+        outline = GetComponent<Outline>();
+        animator = GetComponentInChildren<Animator>();
+        loot = GetComponent<SpawnLoot>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
-
-        if (distance <= lookRadius)
+        if (IsAlive)
         {
-            agent.SetDestination(target.position);
+            float distance = Vector3.Distance(target.position, transform.position);
 
-            if (distance <= agent.stoppingDistance)
+            if (distance <= lookRadius)
             {
-                CharacterStats targetStats = target.GetComponent<CharacterStats>();
-                if (targetStats != null )
+                agent.SetDestination(target.position);
+
+                if (distance <= agent.stoppingDistance)
                 {
-                    combat.Attack(targetStats);
+                    CharacterStats targetStats = target.GetComponent<CharacterStats>();
+                    if (targetStats != null)
+                    {
+                        combat.Attack(targetStats);
+                    }
+                    FaceTarget();
                 }
-                FaceTarget();
             }
         }
+        else
+        {
+            StartCoroutine(Destroy());
+        }      
     }
 
     private void FaceTarget()
@@ -52,5 +68,16 @@ public class EnemyController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
+    }
+
+    IEnumerator Destroy()
+    {
+        collider.enabled = false;
+        outline.enabled = false;
+        agent.enabled = false;
+        animator.SetBool("IsDead", true);
+        loot.Loot();
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
 }
