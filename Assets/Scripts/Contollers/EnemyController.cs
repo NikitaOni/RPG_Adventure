@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
     public float lookRadius = 10f;
+    public bool IsAlive = true;
 
     Transform target; 
     NavMeshAgent agent;
     CharacterCombat combat;
-    public bool IsAlive = true;
-    new CapsuleCollider collider;
     Outline outline;
     Animator animator;
     SpawnLoot loot;
+    new CapsuleCollider collider;
+    
+    private bool IsDestroy = false;
 
 
     // Start is called before the first frame update
@@ -51,7 +54,7 @@ public class EnemyController : MonoBehaviour
                 }
             }
         }
-        else
+        else if(!IsDestroy)
         {
             StartCoroutine(Destroy());
         }      
@@ -72,6 +75,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator Destroy()
     {
+        IsDestroy = true;
         collider.enabled = false;
         outline.enabled = false;
         agent.enabled = false;

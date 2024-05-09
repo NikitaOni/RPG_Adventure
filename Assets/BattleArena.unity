@@ -2539,6 +2539,7 @@ MonoBehaviour:
   loot:
   - {fileID: 7199266586134490432, guid: 4d64c01ffe1dbbf43b7ab081c03df407, type: 3}
   minNumber: 7
+  maxNumber: 20
   spawnPoint: {fileID: 2144420240}
 --- !u!114 &156186183
 MonoBehaviour:
@@ -15463,7 +15464,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loot: []
-  minNumber: 7
+  minNumber: 1
+  maxNumber: 2
   spawnPoint: {fileID: 0}
 --- !u!114 &565669196
 MonoBehaviour:
@@ -25379,6 +25381,7 @@ MonoBehaviour:
   loot:
   - {fileID: 7199266586134490432, guid: 4d64c01ffe1dbbf43b7ab081c03df407, type: 3}
   minNumber: 7
+  maxNumber: 20
   spawnPoint: {fileID: 1970967825}
 --- !u!1001 &631811038
 PrefabInstance:

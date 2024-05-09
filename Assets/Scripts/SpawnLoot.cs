@@ -5,14 +5,9 @@ using UnityEngine;
 public class SpawnLoot : MonoBehaviour
 {
     [SerializeField] private List<GameObject> loot = new List<GameObject>();
-    [SerializeField]
-    [Range(1,99)]
-    private int minNumber = 7;
-    [Range(2, 100)]
-    private int maxNumber = 20;
-    [SerializeField]
-    private Transform spawnPoint;
-    private bool hasBeenCollected = false;
+    [SerializeField] [Range(1,99)]   private int minNumber = 1;
+    [SerializeField] [Range(2, 100)] private int maxNumber = 3;
+    [SerializeField] private Transform spawnPoint;
 
     private void OnValidate()
     {
@@ -24,8 +19,11 @@ public class SpawnLoot : MonoBehaviour
 
     public void Loot()
     {
-        hasBeenCollected = true;
+        Debug.Log(minNumber);
+        Debug.Log(maxNumber);
         int number = Random.Range(minNumber, maxNumber);
+
+        Debug.Log(number);
         StartCoroutine(CreateLoot(number));
     }
 

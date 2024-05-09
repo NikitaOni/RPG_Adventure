@@ -12,7 +12,7 @@ public class lootDrop : MonoBehaviour
     void Start()
     {
         startPosition = this.transform.position;
-        velocity *= Random.Range(4f, 6f);
+        velocity *= Random.Range(3f, 4f);
         velocity += new Vector3(Random.Range(1f, 1f), 0, Random.Range(-1f, 1f));
 
         rb = this.GetComponent<Rigidbody>();
@@ -25,7 +25,7 @@ public class lootDrop : MonoBehaviour
     {
         rb.position += velocity * Time.deltaTime;
 
-        Quaternion deltaRotation = Quaternion.Euler(new Vector3(Random.Range(-150f, 150f), Random.Range(-150f, 150f), Random.Range(-150f, 150f)) * Time.deltaTime);
+        Quaternion deltaRotation = Quaternion.Euler(new Vector3(Random.Range(-150f, 150f), Random.Range(-150f, 150f), 0) * Time.deltaTime);
         rb.MoveRotation(rb.rotation * deltaRotation);
 
         if (velocity.y < -4f)
@@ -40,8 +40,7 @@ public class lootDrop : MonoBehaviour
         if (Mathf.Abs(rb.position.y - startPosition.y) < 0.25f && velocity.y < 0f)
         {
             rb.useGravity = true;
-            rb.isKinematic = false;
-            rb.velocity = velocity;
+            rb.isKinematic = true;
             this.enabled = false;
         }
     }
