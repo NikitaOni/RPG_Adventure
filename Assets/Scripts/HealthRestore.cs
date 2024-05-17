@@ -10,8 +10,8 @@ public class HealthRestore : MonoBehaviour
     private float cooldown = 5f;
 
     // for first five second use heal pot 
-    private float ColldownCurrent = -5;
-    private float DelayBeforeSwitchingOff = 1.5f;
+    private float colldownCurrent = -5;
+    private float delayBeforeSwitchingOff = 1.5f;
     [SerializeField] private Image cooldownImage;
 
     public GameObject prefabEffects;
@@ -30,15 +30,15 @@ public class HealthRestore : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (Time.time - ColldownCurrent > cooldown)
+            if (Time.time - colldownCurrent > cooldown)
             {
                 UsePotionOfHealth(myStats, amountRestore);
-                ColldownCurrent = Time.time;
+                colldownCurrent = Time.time;
                 var healEffect = Instantiate(prefabEffects, projSpawnPoint.position, Quaternion.identity,transform);
-                Destroy(healEffect, DelayBeforeSwitchingOff);
+                Destroy(healEffect, delayBeforeSwitchingOff);
             }
         }
-        float cooldownPercent = (Time.time - ColldownCurrent) / cooldown;
+        float cooldownPercent = (Time.time - colldownCurrent) / cooldown;
         //reverse value 
         cooldownImage.fillAmount = 1 - cooldownPercent;
     }

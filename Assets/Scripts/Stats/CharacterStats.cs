@@ -42,6 +42,16 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    public void DamgageIncreace()
+    {
+        damage.AddModifier(30);
+    }
+
+    public void DamgageRedaction()
+    {
+        damage.RemoveModifier(30);
+    }
+
     public void RestoreDamage(int heal)
     {
         if (currentHealth < maxHealth)
