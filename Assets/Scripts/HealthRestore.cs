@@ -5,16 +5,17 @@ using UnityEngine.UI;
 
 public class HealthRestore : MonoBehaviour
 {
-    CharacterStats myStats;
-    int amountRestore = 25;
-
-    [SerializeField]private Image cooldownImage;
-    float cooldown = 5f;
+    private CharacterStats myStats;
+    private int amountRestore = 25;
+    private float cooldown = 5f;
 
     // for first five second use heal pot 
-    float ColldownCurrent = -5; 
+    private float ColldownCurrent = -5;
+    private float DelayBeforeSwitchingOff = 1.5f;
+    [SerializeField] private Image cooldownImage;
 
-
+    public GameObject prefabEffects;
+    public Transform projSpawnPoint;
 
     void Start()
     {
@@ -33,6 +34,8 @@ public class HealthRestore : MonoBehaviour
             {
                 UsePotionOfHealth(myStats, amountRestore);
                 ColldownCurrent = Time.time;
+                var healEffect = Instantiate(prefabEffects, projSpawnPoint.position, Quaternion.identity,transform);
+                Destroy(healEffect, DelayBeforeSwitchingOff);
             }
         }
         float cooldownPercent = (Time.time - ColldownCurrent) / cooldown;

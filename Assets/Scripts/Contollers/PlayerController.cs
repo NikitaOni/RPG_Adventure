@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     Camera cam;
     PlayerMotor motor;
+
+    public bool castingSpell;
     void Start()
     {
         cam = Camera.main;
@@ -21,7 +23,7 @@ public class PlayerController : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !castingSpell)
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;

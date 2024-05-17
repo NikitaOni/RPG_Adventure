@@ -12,8 +12,6 @@ public class HighLightManager : MonoBehaviour
     private Outline highlightOutline;
     private RaycastHit hit;
 
-    
-
     void Update()
     {
         HoverHighLight();

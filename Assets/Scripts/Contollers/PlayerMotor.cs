@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class PlayerMotor : MonoBehaviour
 {
     Transform target;
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
 
     public float rotateSpeedMovement = 0.05f;
     private float rotateVelocity;
