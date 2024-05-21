@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UseQAbility : MonoBehaviour
 {
     [Header("Ability values")]
-    public KeyCode abilityKey = KeyCode.Z;
+    public KeyCode abilityKey = KeyCode.Q;
     public float cooldown = 10f;
     //public float manaCost = 20f;
 
@@ -72,6 +72,11 @@ public class UseQAbility : MonoBehaviour
             TryCastFireball();  
         }
         
+    }
+
+    private void OnDrawGizmos()
+    {
+        //Gizmos.DrawSphere(transform.position, maxAbilityDistance);
     }
 
     private void TryCastFireball()

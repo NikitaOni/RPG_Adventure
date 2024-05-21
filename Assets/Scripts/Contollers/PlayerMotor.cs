@@ -8,36 +8,47 @@ public class PlayerMotor : MonoBehaviour
 {
     Transform target;
     public NavMeshAgent agent;
-
     public float rotateSpeedMovement = 0.05f;
+    public UseDeshAbility desh;
+
     private float rotateVelocity;
     private HighLightManager highLightManager;
+
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         highLightManager = GetComponent<HighLightManager>();
+        desh = GetComponent<UseDeshAbility>();
     }
 
     private void Update()
     {
-        if (target != null)
+        if (target != null && desh.canMove)
         {
             agent.SetDestination(target.position);
             FaceTarget();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            agent.ResetPath();
         }
     }
 
     public void MoveToPoint(Vector3 point)
     {
-        agent.SetDestination(point);
+        if (desh.canMove)
+        {
+            agent.SetDestination(point);
 
-        highLightManager.DeselectHighlight();
+            highLightManager.DeselectHighlight();
 
-        Quaternion rotationToLookAt = Quaternion.LookRotation(point - transform.position);
-        float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLookAt.eulerAngles.y, ref rotateVelocity, rotateSpeedMovement * (Time.deltaTime * 5));
+            Quaternion rotationToLookAt = Quaternion.LookRotation(point - transform.position);
+            float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLookAt.eulerAngles.y, ref rotateVelocity, rotateSpeedMovement * (Time.deltaTime * 5));
 
-        transform.eulerAngles = new Vector3(0, rotationY, 0);
+            transform.eulerAngles = new Vector3(0, rotationY, 0);
+        }
     }
 
     public void FollowTarget(Interactable newTarget)
