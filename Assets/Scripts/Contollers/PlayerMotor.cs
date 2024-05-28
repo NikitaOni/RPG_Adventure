@@ -11,9 +11,9 @@ public class PlayerMotor : MonoBehaviour
     public float rotateSpeedMovement = 0.05f;
     public UseDeshAbility desh;
 
+
     private float rotateVelocity;
     private HighLightManager highLightManager;
-
 
     private void Start()
     {
@@ -29,11 +29,6 @@ public class PlayerMotor : MonoBehaviour
             agent.SetDestination(target.position);
             FaceTarget();
         }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            agent.ResetPath();
-        }
     }
 
     public void MoveToPoint(Vector3 point)
@@ -45,7 +40,9 @@ public class PlayerMotor : MonoBehaviour
             highLightManager.DeselectHighlight();
 
             Quaternion rotationToLookAt = Quaternion.LookRotation(point - transform.position);
-            float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLookAt.eulerAngles.y, ref rotateVelocity, rotateSpeedMovement * (Time.deltaTime * 5));
+            float rotationY = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationToLookAt.eulerAngles.y, ref rotateVelocity, rotateSpeedMovement );
+
+            Debug.Log(rotationY);
 
             transform.eulerAngles = new Vector3(0, rotationY, 0);
         }

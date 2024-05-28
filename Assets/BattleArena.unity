@@ -51143,7 +51143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1904816554}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59217,10 +59217,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   focus: {fileID: 0}
-  movementMask:
-    serializedVersion: 2
-    m_Bits: 64
   castingSpell: 0
+  movementMaskGroundNumber: 6
+  interactMaskGroundNumber: 9
+  clickEffect: {fileID: 5726018809045565519, guid: 5004a1d7bc9f89049bf8928c8e786ac3, type: 3}
 --- !u!224 &2767165352446343072
 RectTransform:
   m_ObjectHideFlags: 0
@@ -60552,7 +60552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
-  rotateSpeedMovement: 1
+  rotateSpeedMovement: 20
   desh: {fileID: 0}
 --- !u!4 &4341084149579144579
 Transform:
